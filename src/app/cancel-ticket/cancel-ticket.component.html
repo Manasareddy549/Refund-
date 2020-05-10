@@ -1,0 +1,46 @@
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
+</head>
+    <h1  align="center">CANCEL YOUR TICKETS NOW</h1><br><br>
+  <h2 class=" row justify-content-center align-items-center">
+    <ul>
+        <div class="container">
+            <div class="form-group">
+    <span>
+ <label>Enter your card number</label>
+ <input type="text" name="acc_no" #accountIdRef="ngModel"  [(ngModel)]="accountNo" pattern="[0-9] {4}"  minlength="4" maxlength="4"
+        required placeholder="enter your 4 digit card no." class="form-control"  style="font-size : 15px;"><br></span>
+       <div *ngIf='accountIdRef.errors && accountIdRef.touched' class="alert alert-danger" >
+           <div [hidden]='!accountIdRef.errors.required' style="font-size : 10px;"> Provide AccountNo</div>
+           <div *ngIf='accountIdRef.errors.pattern' style="font-size : 10px;">Account number should be only numbers  </div>
+           <div *ngIf='accountIdRef.errors.minlength' style="font-size : 10px;">Account number should be of 4 digits</div>
+           <div *ngIf='accountIdRef.errors.maxlength' style="font-size : 10px;">Account number should be of 4 digits</div>
+       </div>
+       </div> 
+        </div>
+       <div class="container">
+        <div class="form-group">
+           <span>
+<label>Enter your booking Id</label>
+<input type="text" name="book_id" class="form-group" [(ngModel)]="booking_id" class="form-control" style="font-size : 15px;" required placeholder="enter your booking Id" ><br></span>
+    <input  type="button" class="btn btn-success" value="submit" (click)="refund_data()" style="font-size : 20px; width: 40%; height: 40px;">
+<br>
+</div>
+</div>
+</ul>
+</h2>
+
+<div *ngIf="check" align="center">
+    <h3>Money refunded successfully!!</h3>
+    <h3>Money Refunded : {{refunddetails.money_refunded}}</h3><br>
+    <h3>No. of seats booked by you : {{refund.seats_booked}}</h3><br>
+    <h3>Seat type : {{refund.seat_type}}</h3>
+</div>
+<br>
+
+<div *ngIf="check1" align="center">
+    <h2>Sorry, the entered details were incorrect</h2>
+    <h3>or</h3><br>
+    <h2>refunding already executed in the past</h2>
+</div>

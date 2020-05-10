@@ -1,0 +1,71 @@
+<head>
+  
+  <style>
+    table{
+      border-collapse: collapse;
+      width: 40%;
+      line-height: normal;
+      text-align: center;
+      font-size: small;
+    }
+    th{background-color:dodgerblue;
+    color: white;}
+    th,td{
+      border:2px solid #ddd;
+      padding: 10px;
+    }
+    </style>
+ 
+</head>
+<body>
+  <div class="res-tab" align="center">
+    <table>
+      <tbody>
+        <tr>
+         <th>Sno</th>
+         <th>Seat-type</th>
+          <th>Seats available</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+        <tr *ngFor="let emp of allseats">
+           <td>{{ emp. sno}}</td>
+           <td>{{ emp.seat_type}}</td>
+           <td>{{ emp.available_seats }}</td>
+           <td>{{emp.price}}</td>
+           <td><input type="button"  value="update" (click)="updateSeats(emp)" class="btn btn-primary"></td>
+       </tr>
+        <tr>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</body>
+<br>
+
+
+<div align="center" class=" row justify-content-center align-items-center">
+  
+<div *ngIf="click">
+  <form>  
+    <div class="container">
+      <div class="form-group">
+  <label>Sno</label> 
+ <span><input type="text" name="sno" [(ngModel)]="seat1.sno" style="font-size : 15px;"  class="form-control" style="width: 200px;" required><br></span> 
+  <label>Seat type</label>
+  <span><input type="text" name="seat_type" [(ngModel)]="seat1.seat_type"   class="form-control" style="font-size : 15px;" style="width: 200px;" required /><br></span>
+  <label>Seats available</label>
+  <input type="text" name="available_seats" [(ngModel)]="seat1.available_seats"  class="form-control" style="font-size : 15px;" style="width: 200px;"/><br>
+ <label>Price</label> <input type="text" name="price" [(ngModel)]="seat1.price"  class="form-control"  style="font-size : 15px;"style="width: 200px;"/><br>
+  <input type="button" value="update Seats" (click)="updateDetails()" class="form-group btn btn-success"  style="font-size :15px;" />
+    </div>
+  </div>
+</form>
+</div>
+</div>
+<br>
+<div *ngIf="check" align="center">
+  <h2>{{ message }}</h2>
+</div>

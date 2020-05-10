@@ -1,0 +1,135 @@
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <h1  align="center">WELCOME!! Please login for booking movie</h1> <br><br>
+
+  <h2 class=" row justify-content-center align-items-center">
+    <ul>
+    Username  : <input   type="text" name="uname" [(ngModel)]="username" placeholder="enter username" id="rcorners2"  style="width: 200px;" required><br><br>
+    Password  : <input    type="password" name="pass"  id="textPassword" [(ngModel)]="password" placeholder="enter password" id="rcorners2"  style="width: 200px;" required><br><br>
+    ConfirmPwd: <input type="password" id="ConfirmPassword" placeholder="enter confirm pwd" id="rcorners2"  style="width: 200px;"><br><br>
+    
+    <h1> <input type="button" class="btn btn-success" value="submit" (click)="validate()"  style="font-size : 20px; width: 30%; height: 40px;"></h1>
+    </ul>
+    <script>
+        function validate() {
+            var password = document.getElementById("textPassword").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            if (password != confirmPassword) 
+            {
+             alert("Passwords does not match");
+             return true;
+        }
+       return false;
+    }
+    </script>
+    
+    <br>
+  </h2>
+<div align="center" *ngIf="validation1" >
+    <h2  align="center">Login success!!</h2>
+
+    <div>
+        <h2 class=" row justify-content-center align-items-center"></h2>
+        <ul>
+        <h2 align="center">select any city</h2>
+       <form>
+            <tr align="center" *ngFor="let city of cities" >
+                <td><input type="submit" value={{city.citynames}} (click)="selectCity(city.citynames)" id="rcorners2" ></td>
+            </tr>
+        </form>
+        </ul>
+    </div>
+    <br>
+
+    <div  align="center" *ngIf="checkTheatre">
+        <h2 class=" row justify-content-center align-items-center"></h2>
+        <h2>select any theatre</h2>
+        <tr  align="center" *ngFor="let theatre of theatres">
+            <td><input type="submit" value={{theatre.theatre_name}} (click)="selectTheatre(theatre.theatre_name)" id="rcorners2"></td>
+    </div>
+    <br>
+
+    <div  align="center" *ngIf="checkMovies">
+        <h2>select any Movie</h2>
+        <tr  align="center" *ngFor="let movie of movie_details">
+            <td><input type="submit" value={{movie.movies}} (click)="selectMovie()" id="rcorners2" ></td>
+        </tr>
+    </div>
+    <br>
+
+    <div  align="center" *ngIf="checkShows">
+        <h2>select any show</h2>
+<form>
+        <tr  align="center" *ngFor="let shows of show_details">
+            <td><input type="submit" value={{shows.show}} (click)="selectShow()" id="rcorners2"></td>
+            <td>{{shows.timings}}</td>
+        </tr>
+    </form>
+    </div>
+    <br>
+
+    <div  align="center" *ngIf="checkLanguage">
+        <h2>select any language</h2>
+        <tr  align="center" *ngFor="let languages of language_details">
+            <td><input type="submit" value={{languages.language}} (click)="selectLanguage()" id="rcorners2"></td>
+        </tr>
+    </div>
+    <br>
+
+    <div  align="center" *ngIf="checkSeats">
+        <h2  align="center">select any seat</h2>
+        <table border="2" cellspacing="5" cellpadding="5">
+        <tr>
+            <th>Seat Type</th>
+            <th>Available Seats</th>
+            <th>Price</th>
+        </tr>
+        <tr  align="center" *ngFor="let seat of seats">
+            <td><input type="submit" value={{seat.seat_type}} (click)="chosenSeat(seat)" id="rcorners2" ></td>
+            <td>{{seat.available_seats}}</td>
+            <td>{{seat.price}}</td>
+        </tr>
+    </table>
+    </div>
+
+    <div  align="center" *ngIf="seat">
+        Please enter no. of seats to be booked : <input type="text" name="seatsBooked" placeholder="enter no. of seats" [(ngModel)]="no_of_seats" id="rcorners2"  required><br>
+        <input type="submit" value="submit" (click)="no_of_seats_selected()" id="rcorners2" style="font-size : 20px; width: 30%; height: 40px;">
+    </div>
+    <br>
+
+    <div  align="center" *ngIf="check1">
+        <h2>Your total amount is : {{total_amount}}</h2>
+        <br>
+        Enter your account no. : <input type="text" name="account" [(ngModel)]="accountNo" id="rcorners2"   required><br>
+        <input type="submit" input type="button" class="btn btn-success"  value="submit" (click)="entered_accountNo()" id="rcorners2">
+    </div>
+
+    <div *ngIf="check5">
+        <h2>please enter a valid seats to be booked!!</h2>
+    </div>
+    <br>
+
+    <div *ngIf="check2">
+        <h2>sorry, you don't have sufficient  balance</h2>
+    </div>
+    <br>
+
+    <div *ngIf="check3">
+        <h2>Enjoy watching movie!!your tickets are booked...</h2>
+        <h2>{{payment_message}}</h2>
+    </div>
+    <br>
+
+    <div *ngIf="check4">
+        <h2>sorry, entered account number is not correct or does not exist!!</h2>
+    </div>
+
+</div>
+<br>
+
+<div *ngIf="validation2" align="center">
+  <h2>  Sorry! wrong password, try again!</h2>
+</div>

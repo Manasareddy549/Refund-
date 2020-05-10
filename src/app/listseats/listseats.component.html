@@ -1,0 +1,32 @@
+
+<form>
+<div class="row justify-content-center align-items-center h-100 a">
+    <div class="container">
+        <div class="form-group">
+            <span>  
+            <label>Enter seat-type:</label>
+    <input type="text" name="seat_type" [(ngModel)]="seat_type" placeholder="Enter Seat type" class="form-group" style="font-size :20px; "  class="form-control" style="width: 200px;"><br><br></span>
+        <span> <input type="button"  class="btn btn-success" value="fetch details" (click)="fetchSeats()" class="btn btn-primary" style="font-size : 20px;  height: 40px;"/><br></span>
+</div>
+</div>
+</div>
+</form>
+<br>
+<table  align="center"> 
+<div *ngIf="check" align="center" class="form-group">
+    <form>
+        <table>
+            <tr>
+        <h3>Sno : <span class="class" style="width: 200px;">{{seat.sno}}</span></h3>
+        <h3>Seat Type : <span class="class" style="width: 200px;">{{seat.seat_type}}</span></h3>
+        <h3>Seats avaliable: <span class="class"  style="width: 200px;">{{seat.available_seats}}</span></h3>
+        <h3>price : <span class="class" style="width: 200px;">{{seat.price}}</span></h3>
+    </tr>
+    </table>
+    </form>
+    </div>
+</table>
+<div align="center" *ngIf="check1" align="center">
+    <h3>Seat with type : {{seat_type}} does not exist</h3>
+</div>
+
